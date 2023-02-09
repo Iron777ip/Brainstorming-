@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> My Changing web page!!</title>
+    </head>
+    <body>
+        <h1> Page hading</h1>
+        <div id = "content"></div>
+        <script>document.getElementById("content").innerHTML = name;</script>
+        <script>document.getElementsByTagName("h1")[0].innerHTML = name;</script>
+        <script>
+            var name = "Ion"; //string type
+            var age = 27; //Number string
+            var teacher = true; //Boolen type: Notice all lowercase true
+            document.write('Name: ' + name + '<br>'); // + is used for string
+            document.write('Age: ' + age + '<br>') //Try using + with anotation
+            document.write('Is theacher?, ' + teacher + '.')
+            console.log(name);
+        </script>
+    </body>
+</html>
