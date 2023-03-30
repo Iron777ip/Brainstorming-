@@ -1,8 +1,8 @@
 # Use Node JS v16.x as base image
-FROM node:latest
+FROM node:16
 
 # Create server directory inside image
-WORKDIR /app
+WORKDIR /
 
 # Copy the source code
 COPY . .
@@ -11,7 +11,7 @@ COPY . .
 RUN npm install
 
 # Expose server port
-EXPOSE 3000
+EXPOSE 8081
 
 # Start server using npm script
 CMD [ "npm", "run", "start" ]
