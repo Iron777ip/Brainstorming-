@@ -1,0 +1,26 @@
+{
+  "name": "se-cw1-src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.mjs",
+    "dev": "dotenv -e .env.development -- nodemon index.mjs",
+    "test": "dotenv -e .env.development -- jest"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^3.8.1",
+    "express": "^4.17.2",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^4.1.1",
+    "jest": "^27.5.1",
+    "jest-mock-extended": "^2.0.4",
+    "nodemon": "^2.0.15",
+    "prisma": "^3.8.1"
+  }
+}
