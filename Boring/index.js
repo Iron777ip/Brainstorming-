@@ -1,18 +1,18 @@
 
 /* Create express instance */
-const express = require("express")
+
 const app = express();
 const port = 3000;
 
 
 /* Landing route */
 app.get("/", (req, res) => {
-  res.render("index");
+  res.send("Helooo");
 });
 
 // Sample API route
 app.get("/ping", (req, res) => {
-  res.send("pong");
+  res.send("hi");
 });
 
 
