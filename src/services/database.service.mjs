@@ -73,10 +73,9 @@ export default class DatabaseService {
   }
 
   /* Get a list of countries */
-  async getCountries() {
-    const sql = `SELECT * FROM country`;
-    const [rows, fields] = await this.conn.execute(sql);
-    const countries = rows.map(c => new Country(c.Code, c.Name, c.Continent, c.Region, c.Population));
+  async getCountriesWorld() {
+    const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
+    const countries = await this.conn.execute(sql);
     return countries;
   }
 }

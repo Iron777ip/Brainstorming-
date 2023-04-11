@@ -24,19 +24,9 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// Sample API route
-app.get("/ping", (req, res) => {
-  res.send("pong");
-});
-
-// Landing route
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-// Gallery route
-app.get("/gallery", (req, res) => {
-  res.render("gallery");
+app.get("/countries", async (req, res) => {
+  const [rows,fields] = await db.getCountriesWorld();
+  return res.render("countries", {rows, fields});
 });
 
 // About route
@@ -67,17 +57,6 @@ app.post('/cities/:id', async (req, res) => {
   `
   await conn.execute(sql);
   return res.redirect(`/cities/${cityId}`);
-})
-
-// Returns JSON array of cities
-app.get("/api/cities", async (req, res) => {
-  const [rows, fields] = await db.getCities();
-  return res.send(rows);
-});
-
-app.get("/api/countries", async (req, res) => {
-  const countries = await db.getCountries();
-  res.send(countries);
 });
 
 // Run server!
