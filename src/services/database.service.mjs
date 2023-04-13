@@ -72,11 +72,112 @@ export default class DatabaseService {
     return res;
   }
 
-  /* Get a list of countries */
+  async getContinents(){
+    try{
+      const sql = `SELECT Continent FROM country GROUP BY Continent;`;
+      const continent = await this.conn.execute(sql);
+      return continent;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getRegions(){
+    try{
+      const sql = `SELECT Region FROM country GROUP BY Region;`;
+      const region = await this.conn.execute(sql);
+      return region;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCountry(code){
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Code = '${code}';`;
+      const country = await this.conn.execute(sql);
+      return country;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
   async getCountriesWorld() {
-    const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
-    const countries = await this.conn.execute(sql);
-    return countries;
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
+      const countries = await this.conn.execute(sql);
+      return countries;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCountriesContinent(continentName){
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Continent = '${continentName}' ORDER BY ct.Population DESC;`;
+      const countries = await this.conn.execute(sql);
+      return countries;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCountriesRegion(regionName){
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ct.Population DESC;`;
+      const countries = await this.conn.execute(sql);
+      return countries;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCountriesWorldLimit(limit) {
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC LIMIT ${limit};`;
+      const countries = await this.conn.execute(sql);
+      return countries;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCountriesContinentLimit(continentName, limit){
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Continent = '${continentName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
+      const countries = await this.conn.execute(sql);
+      return countries;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCountriesRegionLimit(regionName, limit){
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
+      const countries = await this.conn.execute(sql);
+      return countries;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
   }
 
   /* Get a list of capital_cities */
