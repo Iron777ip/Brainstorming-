@@ -2,7 +2,12 @@ mixin navigation
   nav
     a(href="/")
       b Home
-    a(href="/countries") Countries
-    a(href="/cities") Cities 
-    a(href="/capital_cities") Capital_Cities 
+    .dropdown
+      button( class="dropbtn" ) Countries &#8659;
+      .dropdown-content
+        a(href="/countries") World
+        a(href="/continents") Continent
+        a(href="/regions") Region
+    a(href="/cities") Cities &#8659;
+    a(href="/capital_cities") Capital Cities &#8659;
     a(href="/about") About 
