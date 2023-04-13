@@ -78,4 +78,11 @@ export default class DatabaseService {
     const countries = await this.conn.execute(sql);
     return countries;
   }
+
+  /* Get a list of capital_cities */
+  async getcapital_cities() {
+    const sql = `SELECT ct.Name, ct.Continent, ct.Region,  ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
+    const countries = await this.conn.execute(sql);
+    return countries;
+  }
 }

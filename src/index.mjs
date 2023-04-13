@@ -29,6 +29,11 @@ app.get("/countries", async (req, res) => {
   return res.render("countries", {rows, fields});
 });
 
+app.get("/capital_cities", async (req, res) => {
+  const [rows,fields] = await db.getcapital_cities();
+  return res.render("capital_cities", {rows, fields});
+});
+
 // About route
 app.get("/about", (req, res) => {
   res.render("about", { title: "Boring about page" });
