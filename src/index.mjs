@@ -76,6 +76,18 @@ app.get("/capital_cities", async (req, res) => {
   return res.render("capital_cities", {rows, fields});
 });
 
+app.get("/continent_of_capital", async (req, res) => {
+  const continentName = req.params.name;
+  const [rows, fields] = await db. getcapital_citiesContinent(continentName);
+  return res.render("continent_of_capital", {rows, fields});
+});
+
+app.get("/capital_cities/continent_of_capital", async (req, res) => {
+  const continentName = req.params.name;
+  const [rows, fields] = await db. getcapital_citiesContinent(continentName);
+  return res.render("continent_of_capital", {rows, fields});
+});
+
 // About route
 app.get("/about", (req, res) => {
   res.render("about", { title: "Boring about page" });

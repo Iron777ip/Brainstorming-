@@ -186,4 +186,39 @@ export default class DatabaseService {
     const countries = await this.conn.execute(sql);
     return countries;
   }
+
+  async getcapital_citiesContinentLimit(continentName, limit){
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Continent = '${continentName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
+      const countries = await this.conn.execute(sql);
+      return countries;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getcapital_citiesRegionLimit(regionName, limit){
+    try{
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
+      const countries = await this.conn.execute(sql);
+      return countries;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+  async getcapital_citiesContinent(){
+    try{
+      const sql = `SELECT ct.Name, ct.Continent,   ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
+      const continent = await this.conn.execute(sql);
+      return continent;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
 }

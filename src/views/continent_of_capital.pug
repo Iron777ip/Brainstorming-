@@ -1,0 +1,22 @@
+extends layout.pug
+
+block head
+  link(rel="stylesheet", href="/cities.css")
+
+block content
+  h2 Continents of capital cities 
+  table
+    thead
+      th №
+      th Name
+      th Capital cities 
+      th Population
+
+    tbody
+      each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit #{row.Continent}
+          td.fit #{row.Capital}
+          - const population = new Intl.NumberFormat().format(row.Population);
+          td.fit.number #{population}
