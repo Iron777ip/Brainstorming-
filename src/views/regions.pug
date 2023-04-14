@@ -14,4 +14,5 @@ block content
       each row, i in rows
         tr
           td.fit #{i+1}
-          td.fit #{row.Region}
+          td.fit
+            a(href=`/countries/region/${row.Region}`) #{row.Region}
