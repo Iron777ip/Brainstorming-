@@ -70,18 +70,18 @@ app.get("/countries/region/:name/:limit", async (req, res) => {
   const [rows, fields] = await db.getCountriesRegionLimit(regionName, limit);
   return res.render("countries", {rows, fields});
 });
-
+// Capital_cities route
 app.get("/capital_cities", async (req, res) => {
   const [rows,fields] = await db.getcapital_cities();
   return res.render("capital_cities", {rows, fields});
 });
-
+// continent of Capital_cities route
 app.get("/continent_of_capital", async (req, res) => {
   const continentName = req.params.name;
   const [rows, fields] = await db. getcapital_citiesContinent(continentName);
   return res.render("continent_of_capital", {rows, fields});
 });
-
+// /capital_cities/continent of Capital_cities route
 app.get("/capital_cities/continent_of_capital", async (req, res) => {
   const continentName = req.params.name;
   const [rows, fields] = await db. getcapital_citiesContinent(continentName);
