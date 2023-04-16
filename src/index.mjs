@@ -78,14 +78,14 @@ app.get("/capital_cities", async (req, res) => {
 // continent of Capital_cities route
 app.get("/continent_of_capital", async (req, res) => {
   const continentName = req.params.name;
-  const [rows, fields] = await db. getcapital_citiesContinentLimit(continentName);
+  const [rows, fields] = await db.getcapital_citiesContinent(continentName);
   return res.render("continent_of_capital", {rows, fields});
 });
 // /capital_cities/continent of Capital_cities route
-app.get("/capital_cities/continent_of_capital", async (req, res) => {
+app.get("/capital_cities/continent_of_capital/:name/:limit", async (req, res) => {
   const continentName = req.params.name;
-  const [rows, fields] = await db. getcapital_citiesContinent(continentName);
-  return res.render("continent_of_capital", {rows, fields});
+  const [rows, fields] = await db. getcapital_citiesContinentLimit(continentName);
+  return res.render("capital_cities", {rows, fields});
 });
 
 // About route
