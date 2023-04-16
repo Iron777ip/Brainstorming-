@@ -182,14 +182,14 @@ export default class DatabaseService {
 
   /* Get a list of capital_cities */
   async getcapital_cities() {
-    const sql = `SELECT ct.Name, ct.Continent, ct.Region,  ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
+    const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
     const countries = await this.conn.execute(sql);
     return countries;
   }
 
   async getcapital_citiesContinentLimit(continentName, limit){
     try{
-      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Continent = '${continentName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
+      const sql = `SELECT ct.Code, ct.Name, ct.Continent ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Continent = '${continentName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
       const countries = await this.conn.execute(sql);
       return countries;
     } catch (err) {
@@ -201,7 +201,7 @@ export default class DatabaseService {
 
   async getcapital_citiesRegionLimit(regionName, limit){
     try{
-      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
+      const sql = `SELECT ct.Code, ct.Name,  ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
       const countries = await this.conn.execute(sql);
       return countries;
     } catch (err) {
