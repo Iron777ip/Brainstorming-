@@ -181,23 +181,11 @@ export default class DatabaseService {
   }
 
   /* Get a list of capital_cities */
-  async getcapital_cities() {
+  async getCapitalCity(code){
     try{
-      const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
-      const capital_cities = await this.conn.execute(sql);
-      return capital_cities;
-    } catch (err) {
-      // Handle error...
-      console.error(err);
-      return undefined;
-    }
-  }
-  async getcapital_citiesContinent(){
-    try{
-      const sql = `SELECT ct.Name, ct.Continent, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ct.Population DESC;`;
-      
-      const continent_of_capital = await this.conn.execute(sql);
-      return continent_of_capital;
+      const sql = ``;
+      const city = await this.conn.execute(sql);
+      return city;
     } catch (err) {
       // Handle error...
       console.error(err);
@@ -205,11 +193,11 @@ export default class DatabaseService {
     }
   }
 
-  async getcapital_citiesContinentLimit(continentName, limit){
+  async getCapitalCitiesWorld() {
     try{
-      const sql = `SELECT ct.Code, ci.Name, ct.Continent, ct.Population,  as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Continent = '${continentName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
-      const capital_cities = await this.conn.execute(sql);
-      return capital_cities;
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.Population FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ci.Population DESC;`;
+      const cities = await this.conn.execute(sql);
+      return cities;
     } catch (err) {
       // Handle error...
       console.error(err);
@@ -217,11 +205,59 @@ export default class DatabaseService {
     }
   }
 
-  async getcapital_citiesRegionLimit(regionName, limit){
+  async getCapitalCitiesContinent(continentName){
     try{
-      const sql = `SELECT ct.Code, ct.Name,  ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ct.Population DESC LIMIT ${limit};`;
-      const capital_cities = await this.conn.execute(sql);
-      return capital_cities;
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.Population FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Continent = '${continentName}' ORDER BY ci.Population DESC;`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCapitalCitiesRegion(regionName){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.Population FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ci.Population DESC;`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCapitalCitiesWorldLimit(limit) {
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.Population FROM country ct JOIN city ci ON ct.Capital = ci.ID ORDER BY ci.Population DESC LIMIT ${limit};`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCapitalCitiesContinentLimit(continentName, limit){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.Population FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Continent = '${continentName}' ORDER BY ci.Population DESC LIMIT ${limit};`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCapitalCitiesRegionLimit(regionName, limit){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.Population FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ci.Population DESC LIMIT ${limit};`;
+      const cities = await this.conn.execute(sql);
+      return cities;
     } catch (err) {
       // Handle error...
       console.error(err);

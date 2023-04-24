@@ -77,22 +77,60 @@ app.get("/countries/regions/:name/:limit", async (req, res) => {
   const [rows, fields] = await db.getCountriesRegionLimit(regionName, limit);
   return res.render("countries", {rows, fields});
 });
+
 // Capital_cities route
-app.get("/capital_cities", async (req, res) => {
-  const [rows,fields] = await db.getcapital_cities();
-  return res.render("capital_cities", {rows, fields});
+app.get("/capitalCity/:code", async (req, res) => {
+  const code = req.params.code;
+  const [rows,fields] = await db.getCountry(code);
+  return res.render("capitalCities", {rows, fields});
 });
-// continent of Capital_cities route
-app.get("/continent_of_capital", async (req, res) => {
-  const continentName = req.params.name;
-  const [rows, fields] = await db.getcapital_citiesContinent(continentName);
-  return res.render("continent_of_capital", {rows, fields});
+
+app.get("/capitalCities/world", async (req, res) => {
+  const [rows,fields] = await db.getCapitalCitiesWorld();
+  return res.render("capitalCities", {rows, fields});
 });
-// /capital_cities/continent of Capital_cities route
-app.get("/capital_cities/continent_of_capital/:name/:limit", async (req, res) => {
+
+app.get("/capitalCities/continents", async (req, res) => {
+  const [rows, fields] = await db.getContinents();
+  return res.render("capitalCitiesContinents", {rows, fields});
+});
+
+app.get("/capitalCities/regions", async (req, res) => {
+  const [rows, fields] = await db.getRegions();
+  return res.render("capitalCitiesRegions", {rows, fields});
+});
+
+app.get("/capitalCities/continents/:name", async (req, res) => {
   const continentName = req.params.name;
-  const [rows, fields] = await db. getcapital_citiesContinentLimit(continentName);
-  return res.render("capital_cities", {rows, fields});
+  const [rows, fields] = await db.getCapitalCitiesContinent(continentName);
+  return res.render("capitalCities", {rows, fields});
+});
+
+app.get("/capitalCities/regions/:name", async (req, res) => {
+  const regionName = req.params.name;
+  const [rows, fields] = await db.getCapitalCitiesRegion(regionName);
+  return res.render("capitalCities", {rows, fields});
+});
+
+app.get("/capitalCities/world/:limit", async (req, res) => {
+  const continentName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCapitalCitiesWorldLimit(limit);
+  return res.render("capitalCities", {rows, fields});
+});
+
+app.get("/capitalCities/continents/:name/:limit", async (req, res) => {
+  const continentName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCapitalCitiesContinentLimit(continentName, limit);
+  return res.render("capitalCities", {rows, fields});
+});
+
+app.get("/capitalCities/regions/:name/:limit", async (req, res) => {
+  const regionName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCapitalCitiesRegionLimit(regionName, limit);
+  return res.render("capitalCities", {rows, fields});
 });
 
 // About route
