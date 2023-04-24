@@ -24,47 +24,54 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/continents", async (req, res) => {
-  const [rows, fields] = await db.getContinents();
-  return res.render("continents", {rows, fields});
-});
-
-app.get("/regions", async (req, res) => {
-  const [rows, fields] = await db.getRegions();
-  return res.render("regions", {rows, fields});
-});
-
-app.get("/countries", async (req, res) => {
-  const [rows,fields] = await db.getCountriesWorld();
-  return res.render("countries", {rows, fields});
-});
-
-app.get("/countries/:code", async (req, res) => {
+app.get("/country/:code", async (req, res) => {
   const code = req.params.code;
   const [rows,fields] = await db.getCountry(code);
   return res.render("countries", {rows, fields});
 });
 
-app.get("/countries/continent/:name", async (req, res) => {
+app.get("/countries/world", async (req, res) => {
+  const [rows,fields] = await db.getCountriesWorld();
+  return res.render("countries", {rows, fields});
+});
+
+app.get("/countries/continents", async (req, res) => {
+  const [rows, fields] = await db.getContinents();
+  return res.render("countriesContinents", {rows, fields});
+});
+
+app.get("/countries/regions", async (req, res) => {
+  const [rows, fields] = await db.getRegions();
+  return res.render("countriesRegions", {rows, fields});
+});
+
+app.get("/countries/continents/:name", async (req, res) => {
   const continentName = req.params.name;
   const [rows, fields] = await db.getCountriesContinent(continentName);
   return res.render("countries", {rows, fields});
 });
 
-app.get("/countries/region/:name", async (req, res) => {
+app.get("/countries/regions/:name", async (req, res) => {
   const regionName = req.params.name;
   const [rows, fields] = await db.getCountriesRegion(regionName);
   return res.render("countries", {rows, fields});
 });
 
-app.get("/countries/continent/:name/:limit", async (req, res) => {
+app.get("/countries/world/:limit", async (req, res) => {
+  const continentName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCountriesWorldLimit(limit);
+  return res.render("countries", {rows, fields});
+});
+
+app.get("/countries/continents/:name/:limit", async (req, res) => {
   const continentName = req.params.name;
   const limit = req.params.limit;
   const [rows, fields] = await db.getCountriesContinentLimit(continentName, limit);
   return res.render("countries", {rows, fields});
 });
 
-app.get("/countries/region/:name/:limit", async (req, res) => {
+app.get("/countries/regions/:name/:limit", async (req, res) => {
   const regionName = req.params.name;
   const limit = req.params.limit;
   const [rows, fields] = await db.getCountriesRegionLimit(regionName, limit);
