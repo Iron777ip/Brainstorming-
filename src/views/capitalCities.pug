@@ -11,6 +11,7 @@ block content
       th Name
       th Country
       th Population 
+      th Options
       
     tbody
       each row, i in rows
@@ -20,3 +21,8 @@ block content
           td.fit #{row.Country}
           - const population = new Intl.NumberFormat().format(row.Population);
           td.fit.number #{population}
+          td 
+            button(class="button")
+              i.fa.fa-pencil-square-o(aria-hidden="true")
+            button(class="button")
+              i.fa.fa-pencil-trash(aria-hidden="true")
