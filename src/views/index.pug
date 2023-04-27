@@ -3,9 +3,12 @@ extends layout.pug
 block content
 
   header
-    h1 Population Information
+    h1.text-center  Population Information
 
-      p Welcome to our website where you can find population data for countries around the world.
+      p 
+        b Welcome to our website where you can find population data for countries around the world.
+      |
+   
     .carousel.carousel-dark.slide#carouselExampleDark
       .carousel-indicators
         button(type='button', data-bs-target='#carouselExampleDark', data-bs-slide-to='0', class='active', aria-current='true', aria-label='Slide 1')
@@ -44,10 +47,21 @@ block content
         ul
           each country in ['China', 'India', 'United States', 'Indonesia', 'Brazil', 'Pakistan', 'Nigeria', 'Bangladesh', 'Russia', 'Mexico']
             li
-              a(href=`/country/${country.toLowerCase()}`) #{country}
+              a(href=`/country/${country.toLowerCase()}`) #{country}       
+    
     section
-      h2 About the Data
-        p Our population data comes from the United Nations Department of Economic and Social Affairs. We strive to provide accurate and up-to-date information on population trends, demographics, and more.
+      h2 
+        b About the Data
+          
+          p Our population data comes from the United Nations Department of Economic and Social Affairs. We strive to provide accurate and up-to-date information on population trends, demographics, and more.
+        
+    section.contact-section
+        h2 Get in Touch
+          form
+            input(type='text', placeholder='Your Name')
+            input(type='text', placeholder='Your Email')
+            button.btn-submit(type='submit') Submit
+
  
 
   

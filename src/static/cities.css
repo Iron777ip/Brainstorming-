@@ -1,7 +1,9 @@
 :root {
   --clr-table: rgba(0,0,0,0.75);
 }
-
+body {
+  background-image: img('w1.jpg') ;
+}
 table {
   border: 1px solid var(--clr-table);
   border-collapse: collapse;
