@@ -123,7 +123,18 @@ export default class DatabaseService {
   async getCountry(code){
     try{
       const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Code = '${code}';`;
-      const country = await this.conn.execute(sql);
+      const [rows, fields] = await this.conn.execute(sql);
+
+      const data = rows[0];
+      const country = new Country(
+        data.Code,
+        data.Name,
+        data.Continent,
+        data.Region,
+        data.Population,
+        data.Capital
+      );
+
       return country;
     } catch (err) {
       // Handle error...
@@ -215,8 +226,6 @@ export default class DatabaseService {
       return undefined;
     }
   }
-
-  
 
   /* Capotal Cities */
   async getCapitalCity(code){

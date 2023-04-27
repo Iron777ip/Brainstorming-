@@ -7,7 +7,6 @@ block content
   h2 Countries
   table
     thead
-      
       th Code
       th Name
       th Continent
@@ -28,5 +27,5 @@ block content
           td.fit
             button.btn.btn-info
               i.fa.fa-pencil-square-o(aria-hidden="true")
-            button.btn.btn-danger
+            a.btn.btn-danger(href=`/country/confirm/${row.Code}`, type="button")
               i.fa.fa-trash(aria-hidden="true")

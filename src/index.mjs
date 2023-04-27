@@ -29,6 +29,13 @@ app.get("/country/:code", async (req, res) => {
   const [rows,fields] = await db.getCountry(code);
   return res.render("countries", {rows, fields});
 });
+
+app.get("/country/confirm/:code", async (req, res) => {
+  const code = req.params.code;
+  const country = await db.getCountry(code);
+  return res.render('confirmation', { country });
+});
+
 // Getting all the countries
 app.get("/countries/world", async (req, res) => {
   const [rows,fields] = await db.getCountriesWorld();

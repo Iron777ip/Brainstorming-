@@ -1,0 +1,28 @@
+extends layout.pug
+
+block head
+    link(rel="stylesheet", href="/cities.css")
+
+block content
+    h2.col-md-6.offset-2 Are you sure to remove the data?
+    table
+        thead
+            th Code
+            th Name
+            th Continent
+            th Region
+            th Population
+            th Capital
+        tbody
+            tr
+                td.fit #{country.code}
+                td.fit #{country.name}
+                td.fit #{country.continent}
+                td.fit #{country.region}
+                - const population = new Intl.NumberFormat().format(country.population);
+                td.fit.number.text-start #{population}
+                td.fit #{country.capital}
+    .mt-2.row.d-flex.flex-row-reverse
+        button.btn.btn-primary.col-md-3 Cancel
+        button.btn.btn-danger.col-md-3.mr-2 Confirm
+        
