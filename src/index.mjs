@@ -228,7 +228,7 @@ app.get("/cities/districts/:name/:limit", async (req, res) => {
 
 // About route
 app.get("/about", (req, res) => {
-  res.render("about");
+  return res.render("about");
 });
 
 app.get("/cities", async (req, res) => {
@@ -237,24 +237,24 @@ app.get("/cities", async (req, res) => {
   return res.render("cities", { rows, fields });
 });
 
-// app.get('/cities/:id', async (req, res) => {
-//   const cityId = req.params.id;
-//   const city = await db.getCity(cityId);
-//   return res.render('city', { city });
-// })
+app.get('/cities/:id', async (req, res) => {
+  const cityId = req.params.id;
+  const city = await db.getCity(cityId);
+  return res.render('city', { city });
+})
 
-// /* Update a city by ID */
-// app.post('/cities/:id', async (req, res) => {
-//   const cityId = req.params.id;
-//   const { name } = req.body;
-//   const sql = `
-//     UPDATE city
-//     SET Name = '${name}'
-//     WHERE ID = '${cityId}';
-//   `
-//   await conn.execute(sql);
-//   return res.redirect(`/cities/${cityId}`);
-// });
+/* Update a city by ID */
+app.post('/cities/:id', async (req, res) => {
+  const cityId = req.params.id;
+  const { name } = req.body;
+  const sql = `
+    UPDATE city
+    SET Name = '${name}'
+    WHERE ID = '${cityId}';
+  `
+  await conn.execute(sql);
+  return res.redirect(`/cities/${cityId}`);
+});
 
 // Run server!
 app.listen(port, () => {
