@@ -133,6 +133,99 @@ app.get("/capitalCities/regions/:name/:limit", async (req, res) => {
   return res.render("capitalCities", {rows, fields});
 });
 
+// Cities route
+app.get("/city/:id", async (req, res) => {
+  const code = req.params.id;
+  const [rows,fields] = await db.getCity(id);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/world", async (req, res) => {
+  const [rows,fields] = await db.getCitiesWorld();
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/continents", async (req, res) => {
+  const [rows, fields] = await db.getContinents();
+  return res.render("citiesContinents", {rows, fields});
+});
+
+app.get("/cities/regions", async (req, res) => {
+  const [rows, fields] = await db.getRegions();
+  return res.render("citiesRegions", {rows, fields});
+});
+
+app.get("/cities/countries", async (req, res) => {
+  const [rows, fields] = await db.getCountryNames();
+  return res.render("citiesCountries", {rows, fields});
+});
+
+app.get("/cities/districts", async (req, res) => {
+  const [rows, fields] = await db.getDistricts();
+  return res.render("citiesDistricts", {rows, fields});
+});
+
+app.get("/cities/continents/:name", async (req, res) => {
+  const continentName = req.params.name;
+  const [rows, fields] = await db.getCitiesContinent(continentName);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/regions/:name", async (req, res) => {
+  const regionName = req.params.name;
+  const [rows, fields] = await db.getCitiesRegion(regionName);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/countries/:name", async (req, res) => {
+  const regionName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCitiesCountry(regionName);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/districts/:name", async (req, res) => {
+  const regionName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCitiesDistrict(regionName);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/world/:limit", async (req, res) => {
+  const continentName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCitiesWorldLimit(limit);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/continents/:name/:limit", async (req, res) => {
+  const continentName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCitiesContinentLimit(continentName, limit);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/regions/:name/:limit", async (req, res) => {
+  const regionName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCitiesRegionLimit(regionName, limit);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/countries/:name/:limit", async (req, res) => {
+  const regionName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCitiesCountryLimit(regionName, limit);
+  return res.render("cities", {rows, fields});
+});
+
+app.get("/cities/districts/:name/:limit", async (req, res) => {
+  const regionName = req.params.name;
+  const limit = req.params.limit;
+  const [rows, fields] = await db.getCitiesDistrictLimit(regionName, limit);
+  return res.render("cities", {rows, fields});
+});
+
 // About route
 app.get("/about", (req, res) => {
   res.render("about", { title: "Boring about page" });
@@ -144,24 +237,24 @@ app.get("/cities", async (req, res) => {
   return res.render("cities", { rows, fields });
 });
 
-app.get('/cities/:id', async (req, res) => {
-  const cityId = req.params.id;
-  const city = await db.getCity(cityId);
-  return res.render('city', { city });
-})
+// app.get('/cities/:id', async (req, res) => {
+//   const cityId = req.params.id;
+//   const city = await db.getCity(cityId);
+//   return res.render('city', { city });
+// })
 
-/* Update a city by ID */
-app.post('/cities/:id', async (req, res) => {
-  const cityId = req.params.id;
-  const { name } = req.body;
-  const sql = `
-    UPDATE city
-    SET Name = '${name}'
-    WHERE ID = '${cityId}';
-  `
-  await conn.execute(sql);
-  return res.redirect(`/cities/${cityId}`);
-});
+// /* Update a city by ID */
+// app.post('/cities/:id', async (req, res) => {
+//   const cityId = req.params.id;
+//   const { name } = req.body;
+//   const sql = `
+//     UPDATE city
+//     SET Name = '${name}'
+//     WHERE ID = '${cityId}';
+//   `
+//   await conn.execute(sql);
+//   return res.redirect(`/cities/${cityId}`);
+// });
 
 // Run server!
 app.listen(port, () => {

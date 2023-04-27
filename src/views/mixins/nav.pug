@@ -9,7 +9,14 @@ mixin navigation
         a(href="/countries/continents") Continent
         a(href="/countries/regions") Region
 
-    a(href="/cities") Cities &#8659;
+    .dropdownn
+      button( class="dropbtn" ) Cities &#8659;
+      .dropdownn-content
+        a(href="/cities/world") World
+        a(href="/cities/continents") Continent
+        a(href="/cities/regions") Region
+        a(href="/cities/countries") Countries
+        a(href="/cities/districts") Districts
 
     .dropdownn
       button( class="dropbtn" ) Capital Cities &#8659;
