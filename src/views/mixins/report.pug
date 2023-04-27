@@ -1,0 +1,55 @@
+mixin countryContinents(rows)
+    each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit
+            a(href=`/countries/continents/${row.Continent}`) #{row.Continent}
+
+mixin capitalCityContinents(rows)
+    each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit
+            a(href=`/capitalCities/continents/${row.Continent}`) #{row.Continent}
+
+mixin cityContinents(rows)
+    each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit
+            a(href=`/cities/continents/${row.Continent}`) #{row.Continent}
+
+mixin countryRegions(rows)
+    each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit
+            a(href=`/countries/regions/${row.Region}`) #{row.Region}
+
+mixin capitalCityRegions(rows)
+    each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit
+            a(href=`/capitalCities/regions/${row.Region}`) #{row.Region}
+
+mixin cityRegions(rows)
+    each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit
+            a(href=`/cities/regions/${row.Region}`) #{row.Region}
+
+mixin cityCountries(rows)
+    each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit
+            a(href=`/cities/countries/${row.Name}`) #{row.Name}
+
+mixin cityDistricts(rows)
+    each row, i in rows
+        tr
+          td.fit #{i+1}
+          td.fit
+            a(href=`/cities/districts/${row.District}`) #{row.District}

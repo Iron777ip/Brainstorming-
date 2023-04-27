@@ -37,12 +37,12 @@ app.get("/countries/world", async (req, res) => {
 // Route for continents page
 app.get("/countries/continents", async (req, res) => {
   const [rows, fields] = await db.getContinents();
-  return res.render("countriesContinents", {rows, fields});
+  return res.render("continents", {rows, fields, title:'countryContinents'});
 });
 // Route for regions page
 app.get("/countries/regions", async (req, res) => {
   const [rows, fields] = await db.getRegions();
-  return res.render("countriesRegions", {rows, fields});
+  return res.render("regions", {rows, fields, title:'countryRegions'});
 });
 // Route for countries page in a specific continent
 app.get("/countries/continents/:name", async (req, res) => {
@@ -92,12 +92,12 @@ app.get("/capitalCities/world", async (req, res) => {
 // Route for continents page
 app.get("/capitalCities/continents", async (req, res) => {
   const [rows, fields] = await db.getContinents();
-  return res.render("capitalCitiesContinents", {rows, fields});
+  return res.render("continents", {rows, fields, title:'capitalCityContinents'});
 });
 // Route for region page
 app.get("/capitalCities/regions", async (req, res) => {
   const [rows, fields] = await db.getRegions();
-  return res.render("capitalCitiesRegions", {rows, fields});
+  return res.render("regions", {rows, fields, title:'capitalCityRegions'});
 });
 // Route for capital cities in a specific continent
 app.get("/capitalCities/continents/:name", async (req, res) => {
@@ -147,22 +147,22 @@ app.get("/cities/world", async (req, res) => {
 
 app.get("/cities/continents", async (req, res) => {
   const [rows, fields] = await db.getContinents();
-  return res.render("citiesContinents", {rows, fields});
+  return res.render("continents", {rows, fields, title:'cityContinents'});
 });
 
 app.get("/cities/regions", async (req, res) => {
   const [rows, fields] = await db.getRegions();
-  return res.render("citiesRegions", {rows, fields});
+  return res.render("regions", {rows, fields, title:'cityRegions'});
 });
 
 app.get("/cities/countries", async (req, res) => {
   const [rows, fields] = await db.getCountryNames();
-  return res.render("citiesCountries", {rows, fields});
+  return res.render("countryNames", {rows, fields});
 });
 
 app.get("/cities/districts", async (req, res) => {
   const [rows, fields] = await db.getDistricts();
-  return res.render("citiesDistricts", {rows, fields});
+  return res.render("districts", {rows, fields});
 });
 
 app.get("/cities/continents/:name", async (req, res) => {

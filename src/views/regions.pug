@@ -11,8 +11,5 @@ block content
       th Name
 
     tbody
-      each row, i in rows
-        tr
-          td.fit #{i+1}
-          td.fit
-            a(href=`/cities/regions/${row.Region}`) #{row.Region}
+        include mixins/report
+        +#{title}(rows)
