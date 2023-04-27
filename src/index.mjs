@@ -23,54 +23,54 @@ const { conn } = db;
 app.get("/", (req, res) => {
   res.render("index");
 });
-
+// Finding the country by code
 app.get("/country/:code", async (req, res) => {
   const code = req.params.code;
   const [rows,fields] = await db.getCountry(code);
   return res.render("countries", {rows, fields});
 });
-
+// Getting all the countries
 app.get("/countries/world", async (req, res) => {
   const [rows,fields] = await db.getCountriesWorld();
   return res.render("countries", {rows, fields});
 });
-
+// Route for continents page
 app.get("/countries/continents", async (req, res) => {
   const [rows, fields] = await db.getContinents();
   return res.render("countriesContinents", {rows, fields});
 });
-
+// Route for regions page
 app.get("/countries/regions", async (req, res) => {
   const [rows, fields] = await db.getRegions();
   return res.render("countriesRegions", {rows, fields});
 });
-
+// Route for countries page in a specific continent
 app.get("/countries/continents/:name", async (req, res) => {
   const continentName = req.params.name;
   const [rows, fields] = await db.getCountriesContinent(continentName);
   return res.render("countries", {rows, fields});
 });
-
+// Route for countries page in a specific region
 app.get("/countries/regions/:name", async (req, res) => {
   const regionName = req.params.name;
   const [rows, fields] = await db.getCountriesRegion(regionName);
   return res.render("countries", {rows, fields});
 });
-
+// Route for countries page with a limit
 app.get("/countries/world/:limit", async (req, res) => {
   const continentName = req.params.name;
   const limit = req.params.limit;
   const [rows, fields] = await db.getCountriesWorldLimit(limit);
   return res.render("countries", {rows, fields});
 });
-
+// Route for countries page in a specific continent with a limit
 app.get("/countries/continents/:name/:limit", async (req, res) => {
   const continentName = req.params.name;
   const limit = req.params.limit;
   const [rows, fields] = await db.getCountriesContinentLimit(continentName, limit);
   return res.render("countries", {rows, fields});
 });
-
+// Route for countries page in a specific region with a limit
 app.get("/countries/regions/:name/:limit", async (req, res) => {
   const regionName = req.params.name;
   const limit = req.params.limit;
@@ -78,54 +78,54 @@ app.get("/countries/regions/:name/:limit", async (req, res) => {
   return res.render("countries", {rows, fields});
 });
 
-// Capital_cities route
-app.get("/capitalCity/:code", async (req, res) => {
+// Finding capital city by id
+app.get("/capitalCity/:id", async (req, res) => {
   const code = req.params.code;
-  const [rows,fields] = await db.getCountry(code);
+  const [rows,fields] = await db.getCapitalCity(id);
   return res.render("capitalCities", {rows, fields});
 });
-
+// Route for all capital cities page
 app.get("/capitalCities/world", async (req, res) => {
   const [rows,fields] = await db.getCapitalCitiesWorld();
   return res.render("capitalCities", {rows, fields});
 });
-
+// Route for continents page
 app.get("/capitalCities/continents", async (req, res) => {
   const [rows, fields] = await db.getContinents();
   return res.render("capitalCitiesContinents", {rows, fields});
 });
-
+// Route for region page
 app.get("/capitalCities/regions", async (req, res) => {
   const [rows, fields] = await db.getRegions();
   return res.render("capitalCitiesRegions", {rows, fields});
 });
-
+// Route for capital cities in a specific continent
 app.get("/capitalCities/continents/:name", async (req, res) => {
   const continentName = req.params.name;
   const [rows, fields] = await db.getCapitalCitiesContinent(continentName);
   return res.render("capitalCities", {rows, fields});
 });
-
+// Route for capital cities in a specific region
 app.get("/capitalCities/regions/:name", async (req, res) => {
   const regionName = req.params.name;
   const [rows, fields] = await db.getCapitalCitiesRegion(regionName);
   return res.render("capitalCities", {rows, fields});
 });
-
+// Route for all capital cities in world with limit
 app.get("/capitalCities/world/:limit", async (req, res) => {
   const continentName = req.params.name;
   const limit = req.params.limit;
   const [rows, fields] = await db.getCapitalCitiesWorldLimit(limit);
   return res.render("capitalCities", {rows, fields});
 });
-
+// Route for capital cities in a specific continent with limit
 app.get("/capitalCities/continents/:name/:limit", async (req, res) => {
   const continentName = req.params.name;
   const limit = req.params.limit;
   const [rows, fields] = await db.getCapitalCitiesContinentLimit(continentName, limit);
   return res.render("capitalCities", {rows, fields});
 });
-
+// Route for capital cities in a specific region with a limit
 app.get("/capitalCities/regions/:name/:limit", async (req, res) => {
   const regionName = req.params.name;
   const limit = req.params.limit;
