@@ -1,4 +1,53 @@
 extends layout.pug
 
 block content
-  h2 This is landing page!
+
+  header
+    h1 Population Information
+
+      p Welcome to our website where you can find population data for countries around the world.
+    .carousel.carousel-dark.slide#carouselExampleDark
+      .carousel-indicators
+        button(type='button', data-bs-target='#carouselExampleDark', data-bs-slide-to='0', class='active', aria-current='true', aria-label='Slide 1')
+        button(type='button', data-bs-target='#carouselExampleDark', data-bs-slide-to='1', aria-label='Slide 2')
+        button(type='button', data-bs-target='#carouselExampleDark', data-bs-slide-to='2', aria-label='Slide 3')
+      .carousel-inner
+        .carousel-item.active(data-bs-interval='10000')
+          img(src='...', class='d-block w-100', alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 Welcome to Our Page 
+            p Some representative placeholder content for the first slide.
+        .carousel-item(data-bs-interval='2000')
+          img(src='...', class='d-block w-100', alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 Second slide label
+            p Some representative placeholder content for the second slide.
+        .carousel-item
+          img(src='...', class='d-block w-100', alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 Third slide label
+            p Some representative placeholder content for the third slide.
+      button.carousel-control-prev(type='button', data-bs-target='#carouselExampleDark', data-bs-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.visually-hidden Previous
+      button.carousel-control-next(type='button', data-bs-target='#carouselExampleDark', data-bs-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.visually-hidden Next
+  main
+    section
+      h2 Browse by Country
+        form(action='/search', method='get')
+          input(type='text', name='country', placeholder='Enter a country name')
+          button(type='submit') Search
+    section
+      h2 Top 10 Most Populous Countries
+        ul
+          each country in ['China', 'India', 'United States', 'Indonesia', 'Brazil', 'Pakistan', 'Nigeria', 'Bangladesh', 'Russia', 'Mexico']
+            li
+              a(href=`/country/${country.toLowerCase()}`) #{country}
+    section
+      h2 About the Data
+        p Our population data comes from the United Nations Department of Economic and Social Affairs. We strive to provide accurate and up-to-date information on population trends, demographics, and more.
+ 
+
+  

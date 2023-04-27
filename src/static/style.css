@@ -1,5 +1,6 @@
 html,
 body {
+ 
   font-size: 14px;
   font-family: "Segoe UI", sans-serif;
   background-color: #eeeeee;
@@ -118,4 +119,159 @@ nav a:hover, .dropdownn:hover .dropbtn {
 /* Show the dropdown menu on hover */
 .dropdownn:hover .dropdownn-content {
   display: block;
+}
+
+.carousel-item {
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.carousel-item:nth-child(1) {
+  background-image: url('https://picsum.photos/400/300');
+}
+
+.carousel-item:nth-child(2) {
+  background-image: url('https://picsum.photos/400/300');
+}
+
+.carousel-item:nth-child(3) {
+  background-image: url('https://picsum.photos/400/300');
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.carousel-caption h5 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.carousel-caption p {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 10%;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  height: 50%;
+  width: 50%;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.carousel-control-prev-icon {
+  background-image: url('your-prev-icon-url-here');
+}
+
+.carousel-control-next-icon {
+  background-image: url('your-next-icon-url-here');
+}
+
+@media (max-width: 768px) {
+  .carousel-caption h5 {
+    font-size: 2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+  }
+}
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Header styles */
+header {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0;
+}
+
+/* Main styles */
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Form styles */
+form {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+input[type="text"] {
+  padding: 5px;
+  font-size: 1em;
+  border: none;
+  border-radius: 3px;
+}
+
+button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Media queries */
+@media screen and (min-width: 768px) {
+  main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  section {
+    width: 33.33%;
+  }
 }

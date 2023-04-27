@@ -1,6 +1,7 @@
 extends layout
 
 block content 
+    
     h2 #{city.name}
     p #{city.country.name}, #{city.country.region}
     form(action=`/cities/${city.id}`, method="POST")

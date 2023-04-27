@@ -1,4 +1,32 @@
-extends layout
+extends layout.pug 
+
+
+block content
+  .about-container
+    .about-header
+      h1 Welcome to my About Page
+      p I'm glad you're here!
+
+    .about-bio
+      img(src="https://picsum.photos/200", alt="Profile Picture")
+      p Hi, my name is Abo  and I'm a web developer. I love creating beautiful and functional websites that help businesses and individuals achieve their goals. When I'm not coding, you can find me hiking in the mountains or playing guitar.
+
+    .about-skills
+      h2 My Skills
+      ul
+        li HTML
+        li CSS
+        li JavaScript
+        li Node.js
+        li React
+        li MySQL
+
+    .about-contact
+      h2 Contact Me
+      p If you have any questions or would like to work together, feel free to contact me at abo@example.com.
+
+  //- Custom JavaScript goes here
+
 
 block content
   h2 #{title} 
