@@ -21,9 +21,8 @@ block content
           td.fit #{row.Country}
           - const population = new Intl.NumberFormat().format(row.Population);
           td.fit.number #{population}
-          td
-            button(class="button")
+          td.fit
+            button.btn.btn-info
               i.fa.fa-pencil-square-o(aria-hidden="true")
-                a(href=`/cities/${i + 1}`) #{i + 1} 
-            button(class="button")
-              i.fa.fa-pencil-trash(aria-hidden="true")
+            button.btn.btn-danger
+              i.fa.fa-trash(aria-hidden="true")

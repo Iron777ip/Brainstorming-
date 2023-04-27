@@ -96,6 +96,30 @@ export default class DatabaseService {
     }
   }
 
+  async getCountryNames(){
+    try{
+      const sql = `SELECT Name FROM country GROUP BY Name;`;
+      const region = await this.conn.execute(sql);
+      return region;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getDistricts(){
+    try{
+      const sql = `SELECT District FROM city GROUP BY District;`;
+      const region = await this.conn.execute(sql);
+      return region;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
   async getCountry(code){
     try{
       const sql = `SELECT ct.Code, ct.Name, ct.Continent, ct.Region, ct.Population, ci.Name as 'Capital' FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Code = '${code}';`;
@@ -194,7 +218,7 @@ export default class DatabaseService {
 
   
 
-  /* Get a list of capital_cities */
+  /* Capotal Cities */
   async getCapitalCity(code){
     try{
       const sql = ``;
@@ -270,6 +294,140 @@ export default class DatabaseService {
   async getCapitalCitiesRegionLimit(regionName, limit){
     try{
       const sql = `SELECT ci.Name, ct.Name as 'Country', ci.Population FROM country ct JOIN city ci ON ct.Capital = ci.ID WHERE ct.Region = '${regionName}' ORDER BY ci.Population DESC LIMIT ${limit};`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  // Cities
+
+  async getCity(code){
+    try{
+      const sql = ``;
+      const city = await this.conn.execute(sql);
+      return city;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesWorld() {
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code ORDER BY ci.Population DESC;`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesContinent(continentName){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code WHERE ct.Continent = '${continentName}' ORDER BY ci.Population DESC;`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesRegion(regionName){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code WHERE ct.Region = '${regionName}' ORDER BY ci.Population DESC;`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesCountry(countryName){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code WHERE ct.Name = '${countryName}' ORDER BY ci.Population DESC;`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesDistrict(districtName){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code WHERE ci.District = '${districtName}' ORDER BY ci.Population DESC;`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesWorldLimit(limit) {
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code ORDER BY ci.Population DESC LIMIT ${limit};`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesContinentLimit(continentName, limit){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code WHERE ct.Continent = '${continentName}' ORDER BY ci.Population DESC LIMIT ${limit};`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesRegionLimit(regionName, limit){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code WHERE ct.Region = '${regionName}' ORDER BY ci.Population DESC LIMIT ${limit};`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesCountryLimit(countryName, limit){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code WHERE ct.Name = '${countryName}' ORDER BY ci.Population DESC LIMIT ${limit};`;
+      const cities = await this.conn.execute(sql);
+      return cities;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  async getCitiesDistrictLimit(districtName, limit){
+    try{
+      const sql = `SELECT ci.Name, ct.Name as 'Country', ci.District, ci.Population FROM city ci JOIN country ct ON ci.CountryCode = ct.Code WHERE ci.District = '${districtName}' ORDER BY ci.Population DESC LIMIT ${limit};`;
       const cities = await this.conn.execute(sql);
       return cities;
     } catch (err) {
