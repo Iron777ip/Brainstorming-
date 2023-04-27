@@ -180,6 +180,20 @@ export default class DatabaseService {
     }
   }
 
+  async deleteCountry(code){
+    try{
+      const sql = `DELETE FROM country WHERE CODE = '${code}';`;
+      const res = await this.conn.execute(sql);
+      return res;
+    } catch (err) {
+      // Handle error...
+      console.error(err);
+      return undefined;
+    }
+  }
+
+  
+
   /* Get a list of capital_cities */
   async getCapitalCity(code){
     try{

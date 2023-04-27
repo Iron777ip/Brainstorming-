@@ -25,8 +25,8 @@ block content
           - const population = new Intl.NumberFormat().format(row.Population);
           td.fit.number #{population}
           td.fit #{row.Capital}
-          td 
-            button(class="button")
+          td.fit
+            button.btn.btn-info
               i.fa.fa-pencil-square-o(aria-hidden="true")
-            button(class="button")
-              i.fa.fa-pencil-trash(aria-hidden="true")
+            button.btn.btn-danger
+              i.fa.fa-trash(aria-hidden="true")
