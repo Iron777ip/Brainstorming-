@@ -21,6 +21,8 @@ export default class DatabaseService {
     return new DatabaseService(conn);
   }
 
+  
+
   /* Get a list of all cities */
   async getCities() {
     try {
