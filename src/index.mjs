@@ -36,6 +36,13 @@ app.get("/country/confirm/:code", async (req, res) => {
   return res.render('confirmation', { country });
 });
 
+app.delete("/country/:code", async (req, res) =>{
+  const code = req.params.code;
+  const result = await db.deleteCountry(code);
+  alert('Data removed successfully!');
+  return res.redirect('/countries/world');
+});
+
 // Getting all the countries
 app.get("/countries/world", async (req, res) => {
   const [rows,fields] = await db.getCountriesWorld();
