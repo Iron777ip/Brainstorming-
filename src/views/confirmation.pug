@@ -4,7 +4,7 @@ block head
     link(rel="stylesheet", href="/cities.css")
 
 block content
-    h2.col-md-6.offset-2 Are you sure to remove the data?
+    h2.col-md-6.my-2.bg-secondary.rounded.text-white.text-center Are you sure to remove the data?
     table
         thead
             th Code
@@ -23,6 +23,5 @@ block content
                 td.fit.number.text-start #{population}
                 td.fit #{country.capital}
     .mt-2.row.d-flex.flex-row-reverse
-        button.btn.btn-primary.col-md-3 Cancel
-        button.btn.btn-danger.col-md-3.mr-2 Confirm
-        
+        a.btn.btn-info.col-md-3.mr-2.border(href=`/countries/world`, type="button") Cancel
+        a.btn.btn-danger.col-md-3.border(href=`/country/delete/${country.code}`, type="button", value="delete") Delete
